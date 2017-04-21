@@ -4,17 +4,14 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class JupiterTests {
-
-  @Test
-  void helloJupiter() {
-    System.out.println("Hello Jupiter");
-  }
+class AssertionsTests {
 
   @Test
   void multipleAssertions() {
     Person person = new Person();
     assertAll(() -> assertNotNull(person),
+        // () -> assertNotNull(null),
+        // () -> assertEquals(1,2),
         () -> assertEquals("Jane", person.firstname),
         () -> assertEquals("Doe", person.lastname));
   }
