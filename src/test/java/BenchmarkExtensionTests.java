@@ -7,7 +7,7 @@ class BenchmarkExtensionTests {
 
   @Test
   @Benchmarked
-  void name() throws Exception {
+  void benchmarkTest() throws Exception {
     Thread.sleep(new Random().nextInt(1000));
   }
 }

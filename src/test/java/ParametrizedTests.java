@@ -39,7 +39,7 @@ class ParametrizedTests {
 
   @ParameterizedTest
   @JsonSource(value = "{firstname:'Jane', lastname: 'Doe'}", type = Person.class)
-  void jsonSourceTest(Object param) {
+  void jsonSourceTest(Person param) {
     System.out.println(param);
   }
 

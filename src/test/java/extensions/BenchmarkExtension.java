@@ -9,14 +9,21 @@ import static java.lang.System.currentTimeMillis;
 
 public class BenchmarkExtension implements BeforeTestExecutionCallback, AfterTestExecutionCallback {
 
+  // private long start;
+
   @Override
   public void beforeTestExecution(final TestExtensionContext context) {
-    getStore(context).put(context.getTestMethod().orElseThrow(RuntimeException::new), currentTimeMillis());
+    // start = currentTimeMillis();
+    getStore(context)
+        .put(context.getTestMethod().orElseThrow(RuntimeException::new),
+            currentTimeMillis());
   }
 
   @Override
   public void afterTestExecution(final TestExtensionContext context) {
-    long start = getStore(context).remove(context.getTestMethod().orElseThrow(RuntimeException::new), long.class);
+    long start = getStore(context)
+        .remove(context.getTestMethod().orElseThrow(RuntimeException::new), long.class);
+
     System.out.println("Test execution took " + (currentTimeMillis() - start) + "ms");
   }
 
