@@ -5,7 +5,7 @@ import org.junit.jupiter.params.provider.*;
 
 import java.util.stream.Stream;
 
-class ParametrizedTests {
+class ParameterizedTests {
 
   @ParameterizedTest
   @ValueSource(strings = { "one", "two", "three" })
