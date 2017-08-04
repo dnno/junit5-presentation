@@ -3,7 +3,6 @@ package extensions;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.jupiter.api.extension.TestExtensionContext;
 
 import static java.lang.System.currentTimeMillis;
 
@@ -12,7 +11,7 @@ public class BenchmarkExtension implements BeforeTestExecutionCallback, AfterTes
   // private long start;
 
   @Override
-  public void beforeTestExecution(final TestExtensionContext context) {
+  public void beforeTestExecution(final ExtensionContext context) {
     // start = currentTimeMillis();
     getStore(context)
         .put(context.getTestMethod().orElseThrow(RuntimeException::new),
@@ -20,14 +19,14 @@ public class BenchmarkExtension implements BeforeTestExecutionCallback, AfterTes
   }
 
   @Override
-  public void afterTestExecution(final TestExtensionContext context) {
+  public void afterTestExecution(final ExtensionContext context) {
     long start = getStore(context)
         .remove(context.getTestMethod().orElseThrow(RuntimeException::new), long.class);
 
     System.out.println("Test execution took " + (currentTimeMillis() - start) + "ms");
   }
 
-  private ExtensionContext.Store getStore(final TestExtensionContext context) {
+  private ExtensionContext.Store getStore(final ExtensionContext context) {
     return context.getStore(ExtensionContext.Namespace.create(context));
   }
 }

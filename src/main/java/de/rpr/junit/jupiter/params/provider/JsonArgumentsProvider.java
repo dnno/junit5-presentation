@@ -1,15 +1,17 @@
 package de.rpr.junit.jupiter.params.provider;
 
 import com.google.gson.Gson;
-import org.junit.jupiter.api.extension.ContainerExtensionContext;
+
+import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
-import org.junit.jupiter.params.provider.ObjectArrayArguments;
 import org.junit.jupiter.params.support.AnnotationConsumer;
 
 import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.stream.Stream;
+
+// import org.junit.jupiter.params.provider.ObjectArrayArguments;
 
 public class JsonArgumentsProvider implements ArgumentsProvider, AnnotationConsumer<JsonSource> {
 
@@ -23,10 +25,10 @@ public class JsonArgumentsProvider implements ArgumentsProvider, AnnotationConsu
   }
 
   @Override
-  public Stream<? extends Arguments> arguments(final ContainerExtensionContext context) throws Exception {
+  public Stream<? extends Arguments> provideArguments(final ExtensionContext context) throws Exception {
     return Arrays.stream(value)
         .map(this::map)
-        .map(ObjectArrayArguments::create);
+        .map(Arguments::of);
   }
 
   private <R> R map(final String value) {

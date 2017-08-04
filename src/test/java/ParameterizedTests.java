@@ -32,7 +32,7 @@ class ParameterizedTests {
   }
 
   @ParameterizedTest
-  @MethodSource(names = "parameterMethod")
+  @MethodSource("parameterMethod")
   void methodSourceTest(String param) {
     System.out.println(param);
   }
