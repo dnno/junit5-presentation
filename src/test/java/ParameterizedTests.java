@@ -43,7 +43,7 @@ class ParameterizedTests {
     System.out.println(param);
   }
 
-  static Stream<String> parameterMethod() {
+  private static Stream<String> parameterMethod() {
     return Stream.of("one", "two", "three", "four");
   }
 
